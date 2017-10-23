@@ -8,10 +8,11 @@ import React, {Component} from 'react';
 import {
   View,
   WebView,
+  Text,
+  TouchableOpacity
 } from 'react-native';
 import BaseComponent from "../../comoponents/BaseComponent";
 import GlobalStyles from "../../common/GlobalStyles";
-import MapView from 'react-native-maps';
 
 export default class HomeScreen extends BaseComponent {
   render() {
@@ -20,8 +21,12 @@ export default class HomeScreen extends BaseComponent {
         <WebView
           source={{uri: 'http://salody.cc:3000/'}}
           style={{flex: 1}}
-          scrollEnabled={false}
         />
+        <TouchableOpacity style={{position: 'absolute', top: 200, left: 18, zIndex:1000}}>
+          <View>
+            <Text>按钮</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
