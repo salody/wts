@@ -19,12 +19,12 @@ export default class HomeScreen extends BaseComponent {
     return (
       <View style={{flex: 1, marginTop: GlobalStyles.marginTopCompat}}>
         <WebView
-          source={{uri: 'http://salody.cc:3000/'}}
+          source={{uri: 'http://localhost:3000/'}}
           style={{flex: 1}}
         />
         <TouchableOpacity style={{position: 'absolute', top: 200, left: 18, zIndex:1000}}>
           <View>
-            <Text>按钮</Text>
+            <Text>影藏船体</Text>
           </View>
         </TouchableOpacity>
       </View>
