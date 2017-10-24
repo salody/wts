@@ -38,7 +38,7 @@ export default class HomeScreen extends BaseComponent {
       <View style={{flex: 1, marginTop: GlobalStyles.marginTopCompat}}>
         <WebView
           ref={ webview => { this.webview = webview; }}
-          source={{uri: 'http://salody.cc:3000/'}}
+          source={{uri: 'http://salody.cc:3002/'}}
           style={{flex: 1}}
         />
         <TouchableOpacity
