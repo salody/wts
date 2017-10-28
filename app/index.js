@@ -6,16 +6,18 @@
 
 import {StackNavigator} from 'react-navigation';
 
-import HomeScreen from './screens/home/HomeScreen'
+import HomeScreen from './view/HomeScreen'
+import Typhoon from './view/Typhoon';
 
 // 定义StackNavigator
 const RouteConfigs = {
-  Main: { screen: HomeScreen }
+	Main: {screen: HomeScreen},
+	Typhoon: {screen: Typhoon}
 };
 
 const StackNavigatorConfig = {
-  initialRouterName: 'Main',
-  //headerMode: 'none'
+	initialRouterName: 'Main',
+	//headerMode: 'none'
 };
 
 const App = StackNavigator(RouteConfigs, StackNavigatorConfig);
