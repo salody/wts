@@ -9,6 +9,7 @@ import {Scene, Router, Actions, ActionConst, Stack} from 'react-native-router-fl
 import Utils from './utils/Index';
 import HomeScreen from './view/HomeScreen';
 import Typhoon from './view/Typhoon';
+import Login from './view/Login/Login';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -37,7 +38,8 @@ export default class AppRouterContainer extends Component {
         return (
 			<Router getSceneStyle={getSceneStyle}  backAndroidHandler={this._onExitApp}>
 				<Stack key="root">
-					<Scene key="home" component={HomeScreen} navTransparent={true}/>
+					<Scene key="login" component={Login} initial hideNavBar={true}/>
+					<Scene key="home" component={HomeScreen} type="reset" hideNavBar={true}/>
 					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
 				</Stack>
 			</Router>

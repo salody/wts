@@ -6,16 +6,20 @@ import React, { Component } from 'react'
 import {
     View,
     Text,
+    Image,
     TouchableOpacity,
     StyleSheet,
 } from 'react-native'
 import StyleVariable from '../../style/StyleVariable';
-// import {Actions} from 'react-native-router-flux'
 
 const propTypes = {
     style: React.PropTypes.object,
-    fontStyle: React.PropTypes.object,
+    textStyle: React.PropTypes.object,
+	imgStyle: React.PropTypes.object,
     onPress: React.PropTypes.func,
+	text: React.PropTypes.string,
+	imgSource:React.PropTypes.object,
+	textPosition:React.PropTypes.string, //top,right,bottom,left
 }
 
 export default class BaseButton extends Component {
@@ -24,16 +28,57 @@ export default class BaseButton extends Component {
     }
 
     render(){
-        return(
-            <TouchableOpacity
-                style={[styles.container,this.props.style]}
-                onPress={()=>this.props.onPress()}
-            >
-                <Text style={this.props.fontStyle}>
-                    {this.props.title}
-                </Text>
-            </TouchableOpacity>
-        )
+        // return(
+        //     <TouchableOpacity
+        //         style={[styles.container,this.props.style]}
+        //         onPress={()=>this.props.onPress()}
+        //     >
+        //         <Text style={this.props.fontStyle}>
+        //             {this.props.title}
+        //         </Text>
+        //     </TouchableOpacity>
+        // )
+		if(this.props.imgSource){
+			let  titleView;
+			if(this.props.text) { //尚未完善，用到时再完善
+				titleView = (
+					<View style={{height:40,justifyContent:'center',alignItems:'center'}}>
+						<Text style={[{color: 'white', fontSize: 16}, this.props.textStyle]}>{this.props.text}</Text>
+					</View>
+				)
+				let textStyle = {
+
+				}
+				if (this.props.textPosition == 'top') {
+				}
+				return(
+					<TouchableOpacity onPress={this.props.onPress} style={[this.props.style,{flexDirection:((this.props.text)?"row":"column")}]}>
+						<View style={{width:40,height:40,justifyContent:'center',alignItems:'center'}}>
+							<Image source={this.props.imgSource} style={[{width:20,height:20},]}
+							/>
+						</View>
+						{titleView}
+					</TouchableOpacity>
+				)
+			}else {
+				return(
+						<TouchableOpacity style={styles.imgBtn}
+										  onPress={this.props.onPress}
+						>
+							<Image source={this.props.imgSource} >
+							</Image>
+						</TouchableOpacity>
+					)
+			}
+		}else{
+			return(
+				<TouchableOpacity onPress={this.props.onPress} style={this.props.style}>
+					<View style={{height:40,justifyContent:'center',alignItems:'center'}}>
+						<Text style={[{color: 'white', fontSize: 16}, this.props.textStyle]}>{this.props.text}</Text>
+					</View>
+				</TouchableOpacity>
+			)
+		}
     }
 }
 
@@ -46,5 +91,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor:StyleVariable.color.primary,
-    }
+    },
+	imgBtn:{
+		flex:1,
+		backgroundColor:'white',
+		padding:5,
+		height:35,
+		width:35,
+		margin:5,
+		justifyContent:'center',
+		alignItems:'center',
+		borderRadius:2
+	},
+	imgStyle:{
+		flex:1,
+		backgroundColor:'red',
+	}
 })
