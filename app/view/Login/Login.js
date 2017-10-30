@@ -17,9 +17,6 @@ import {
 	TextInput,
 } from 'react-native';
 import BaseComponent from "../../common/BaseComponent";
-import { WebView } from 'react-native-webview-messaging/WebView';
-import { Actions } from 'react-native-router-flux'
-import NavigationBar from "../../components/basic/NavigationBar";
 import BaseButton from "../../components/basic/BaseButton";
 
 
@@ -35,7 +32,6 @@ export default class Login extends BaseComponent {
 	render() {
 		return (
 			<ImageBackground source={require('../../images/login_backgroundPic.png')} style={styles.container}>
-				<NavigationBar hidden />
 				<View style={styles.inputContainer} >
 					<TextInput style={styles.textInput}
 						placeholder={this.strings.holderAccount}
@@ -78,7 +74,7 @@ export default class Login extends BaseComponent {
 	}
 
 	_onLoginIn = () =>{
-		Actions.home();
+		this.router.jumpToPage('home');
 	}
 	_onForgetPwd = ()=>{
 
@@ -116,10 +112,7 @@ var styles = StyleSheet.create({
 		height:40,
 		backgroundColor:'#1ab2ff'
 	},
-	loginText:{
-		color:'white',
-		fontSize:16,
-	},
+
 	subContainer:{
 		flexDirection:'row',
 		justifyContent:'center',

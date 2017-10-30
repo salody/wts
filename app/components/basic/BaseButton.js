@@ -28,36 +28,56 @@ export default class BaseButton extends Component {
     }
 
     render(){
-        // return(
-        //     <TouchableOpacity
-        //         style={[styles.container,this.props.style]}
-        //         onPress={()=>this.props.onPress()}
-        //     >
-        //         <Text style={this.props.fontStyle}>
-        //             {this.props.title}
-        //         </Text>
-        //     </TouchableOpacity>
-        // )
 		if(this.props.imgSource){
 			let  titleView;
 			if(this.props.text) { //尚未完善，用到时再完善
+
+				let containerStyle={};
+				let textStyle = {}
+				if (this.props.textPosition == 'right') {
+					containerStyle={
+						flexDirection:'row'
+					}
+					textStyle={
+
+					}
+					imgSource = {
+
+					}
+					return(
+						<TouchableOpacity onPress={this.props.onPress}
+										  style={[{flexDirection:"row"},{alignItems:'flex-start'}]}>
+							<View style={[{flex:1,height:40,justifyContent:'center'},this.props.style]}>
+								<View style={{flexDirection:'row'}}>
+									<Image source={this.props.imgSource}
+										   style={[{width:20,height:20},this.props.imgStyle]}
+									/>
+									<View style={{flex:1,justifyContent:'center'}}>
+										<Text style={[{color: 'white', fontSize: 16},this.props.textStyle]}>
+											{this.props.text}
+										</Text>
+									</View>
+								</View>
+							</View>
+						</TouchableOpacity>
+					)
+				}
 				titleView = (
-					<View style={{height:40,justifyContent:'center',alignItems:'center'}}>
-						<Text style={[{color: 'white', fontSize: 16}, this.props.textStyle]}>{this.props.text}</Text>
+					<View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+						<Text style={[{color: 'white', fontSize: 16}, this.props.textStyle]}>
+							{this.props.text}
+						</Text>
 					</View>
 				)
-				let textStyle = {
-
-				}
-				if (this.props.textPosition == 'top') {
-				}
 				return(
 					<TouchableOpacity onPress={this.props.onPress} style={[this.props.style,{flexDirection:((this.props.text)?"row":"column")}]}>
-						<View style={{width:40,height:40,justifyContent:'center',alignItems:'center'}}>
-							<Image source={this.props.imgSource} style={[{width:20,height:20},]}
+						<View style={{justifyContent:'center',alignItems:'center'}}>
+							<Image source={this.props.imgSource}
+								   style={[{width:20,height:20},this.props.imgStyle]}
 							/>
+							{titleView}
 						</View>
-						{titleView}
+
 					</TouchableOpacity>
 				)
 			}else {
@@ -73,8 +93,10 @@ export default class BaseButton extends Component {
 		}else{
 			return(
 				<TouchableOpacity onPress={this.props.onPress} style={this.props.style}>
-					<View style={{height:40,justifyContent:'center',alignItems:'center'}}>
-						<Text style={[{color: 'white', fontSize: 16}, this.props.textStyle]}>{this.props.text}</Text>
+					<View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+						<Text style={[{color: 'white', fontSize: 16}, this.props.textStyle]}>
+							{this.props.text}
+						</Text>
 					</View>
 				</TouchableOpacity>
 			)
@@ -105,6 +127,5 @@ const styles = StyleSheet.create({
 	},
 	imgStyle:{
 		flex:1,
-		backgroundColor:'red',
 	}
 })

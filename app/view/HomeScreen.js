@@ -7,9 +7,9 @@
 import React, {Component} from 'react';
 import {
 	View,
-	AlertIOS,
 	Text,
 	Image,
+	Modal,
 	FlatList,
 	StatusBar,
 	StyleSheet,
@@ -96,7 +96,7 @@ export default class HomeScreen extends BaseComponent {
 	_renderRightMenu = ()=>{
 		if(this.state.showMore){
 			return(
-				<View style={styles.rightContainer} hidden = {this.state.showMore}>
+				<View style={styles.rightContainer} >
 					{this._renderImgBtn('check',require('../images/check.png'))}
 					{this._renderImgBtn('tyhoon',require('../images/tyhoon.png'))}
 					{this._renderImgBtn('files',require('../images/files.png'))}
@@ -110,14 +110,24 @@ export default class HomeScreen extends BaseComponent {
 	_renderShipTypeList = () =>{
 		if (this.state.showTypeList){
 			return(
-				<FlatList
-					style={styles.flatList}
-					data={this.state.shipTypeSource}
-					extraData={this.state}
-					keyExtractor={this._keyExtractor}
-					renderItem={this._renderListItem}
-					ItemSeparatorComponent={this._renderSeparator}
-				/>
+				<Modal style={{flex:1}}
+					   transparent={true}
+						visible={this.state.showTypeList}
+					   onRequestClose={()=>{this.toast('onRequestClose')}}
+				>
+					<TouchableOpacity style={{flex:1}}
+									  onPress={()=>{this.setState({showTypeList:false})}}
+					>
+						<FlatList
+							style={styles.flatList}
+							data={this.state.shipTypeSource}
+							extraData={this.state}
+							keyExtractor={this._keyExtractor}
+							renderItem={this._renderListItem}
+							ItemSeparatorComponent={this._renderSeparator}
+						/>
+					</TouchableOpacity>
+				</Modal>
 			)
 		}else {
 			null;
@@ -126,7 +136,9 @@ export default class HomeScreen extends BaseComponent {
 	_renderListItem = (item) =>{
 		let data = item.item;
 		return(
-			<TouchableOpacity key={item.id} style={{height:30,justifyContent:'center'}}>
+			<TouchableOpacity key={item.id} style={{height:30,justifyContent:'center'}}
+							  onPress = {()=>this._onFlatItemAction(item)}
+			>
 				<Text style={{padding:5,marginLeft:5}}>
 					{data.name}
 				</Text>
@@ -151,7 +163,7 @@ export default class HomeScreen extends BaseComponent {
 		this.toast(btnType);
 		switch (btnType){
 			case 'video':{
-
+				this.router.jumpToPage('video');
 			}
 				break;
 			case 'list':{
@@ -177,15 +189,15 @@ export default class HomeScreen extends BaseComponent {
 			}
 				break;
 			case 'typhone':{
-
+				this.router.jumpToPage('typhone');
 			}
 				break;
 			case 'files':{
-
+				this.router.jumpToPage('learningFiles');
 			}
 				break;
 			case 'setting':{
-
+				this.router.jumpToPage('setting');
 			}
 				break;
 			case 'dotMore':{
@@ -198,11 +210,21 @@ export default class HomeScreen extends BaseComponent {
 
 			}
 				break;
+			case 'message':{
+				this.router.jumpToPage('message');
+			}
+				break;
 			default:
 				break;
 		}
 	}
-
+	_onFlatItemAction = (item) =>{
+		let data = item.item;
+		this.toast(data.name);
+		this.setState({
+			showTypeList:false,
+		})
+	}
 }
 
 var styles = StyleSheet.create({
@@ -211,8 +233,6 @@ var styles = StyleSheet.create({
 		left:OtherConfig.marginMid,
 		top:60,
 		width:50,
-		// height:120,
-		// backgroundColor:'gray',
 	},
 	LBContainer:{
 		position:'absolute',

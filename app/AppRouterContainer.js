@@ -10,6 +10,10 @@ import Utils from './utils/Index';
 import HomeScreen from './view/HomeScreen';
 import Typhoon from './view/Typhoon';
 import Login from './view/Login/Login';
+import LearningFiles from './view/LearningFiles/LearningFiles'
+import Message from './view/Message/Message'
+import Video from './view/Video/VideoList'
+import Setting from './view/Setting/Setting'
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -38,9 +42,13 @@ export default class AppRouterContainer extends Component {
         return (
 			<Router getSceneStyle={getSceneStyle}  backAndroidHandler={this._onExitApp}>
 				<Stack key="root">
-					<Scene key="login" component={Login} initial hideNavBar={true}/>
-					<Scene key="home" component={HomeScreen} type="reset" hideNavBar={true}/>
+					<Scene key="login" component={Login}  hideNavBar={true}/>
+					<Scene key="home" component={HomeScreen} type="reset" initial hideNavBar={true}/>
 					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
+					<Scene key="learningFiles" component={LearningFiles} title="学习文档"/>
+					<Scene key="message" component={Message} title="消息"/>
+					<Scene key="video" component={Video} title="视频"/>
+					<Scene key="setting" component={Setting} title="设置" />
 				</Stack>
 			</Router>
         );

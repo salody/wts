@@ -16,7 +16,7 @@ export default class StyleVariable {
     static get color(){
        return {
            container: '#ffffff',//容器背景色
-           background: '#f5f7fa',//背景色
+           background: '#F5F7FA',//背景色
            content: '#ffffff',//内容背景色
            primary: '#1ab2ff',//主色调
            divider: '#dce1e5',//分割线
@@ -26,6 +26,17 @@ export default class StyleVariable {
            btnBackgroundColor: '#1ab2ff',//文字或按钮的红
        }
     }
+
+    static get sizeValue(){
+    	return {
+
+			//常用间隔
+			marginHuge:30,
+			marginLarge: 20,
+			marginMid: 10,
+			marginSmall: 5
+		}
+	}
 
     // 全局文字字体大小
     static get fontSize(){
