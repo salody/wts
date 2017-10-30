@@ -13,7 +13,7 @@ let _jumpToPage = (name, param = {}) => {
     (Actions[name])(param);
 };
 
-let _jumpToLogin = () => _jumpToPage('passwordLogin');
+let _jumpToLogin = () => _jumpToPage('login');
 
 export default {
     jumpPop             : (param = {}) => {

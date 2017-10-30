@@ -57,11 +57,6 @@ export default class HomeScreen extends BaseComponent {
 	render() {
 		return (
 			<View style={{flex: 1}}>
-				<StatusBar
-					hidden={true}
-					translucent={true}
-					animated={false}
-				/>
 				<WebView
 					ref={ webview => {
 						this.webview = webview;
@@ -148,10 +143,10 @@ export default class HomeScreen extends BaseComponent {
 		)
 	}
 	_onImgBtnAction = (btnType) =>{
-		this.toast(btnType);
+		// this.toast(btnType);
 		switch (btnType){
 			case 'video':{
-
+				this.router.jumpToPage('videoList');
 			}
 				break;
 			case 'list':{

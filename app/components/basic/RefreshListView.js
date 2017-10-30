@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import EmptyPage from './EmptyPage';
-import { View, Text, StyleSheet, RefreshControl, ListView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, RefreshControl, ListView, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
 
 const propTypes = {
     onHeaderRefresh: React.PropTypes.func,
@@ -77,8 +77,8 @@ export default class RefreshListView extends Component {
             this.state.footerState == RefreshState.None) {
             return false
         }
-        
-        return this.props.dataSource.getRowCount() != 0;
+
+        return this.props.data.length != 0;
     }
 
     endRefreshing(refreshState: RefreshState) {
@@ -86,9 +86,9 @@ export default class RefreshListView extends Component {
             return
         }
         let footerState = refreshState
-        if (this.props.dataSource.getRowCount() == 0) {
-            footerState = RefreshState.Success
-        }
+        if (this.props.data.length == 0) {
+		    footerState = RefreshState.Success
+		}
 
         this.setState({
             loaded: true,
@@ -119,17 +119,12 @@ export default class RefreshListView extends Component {
 
     render() {
         return (
-            <ListView
+            <FlatList
                 {...this.props}
-                enableEmptySections
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.headerState == RefreshState.Refreshing}
-                        onRefresh={() => this.onHeaderRefresh()}
-                        tintColor='gray'
-                    />
-                }
-                renderFooter={() => this.renderFooter()}
+				keyExtractor = {(item, index) => item.id}
+				refreshing = {this.state.headerState == RefreshState.Refreshing}
+				ListEmptyComponent={() => this.renderEmptyView()}
+				ListFooterComponent={() => this.renderFooter()}
                 onEndReachedThreshold={10}
                 onEndReached={() => this.onFooterRefresh()}
             />
@@ -139,7 +134,7 @@ export default class RefreshListView extends Component {
     renderFooter() {
         let footer = null;
         if(this.state.loaded){
-            if(this.props.dataSource.getRowCount() > 0){
+            // if(this.props.dataSource.getRowCount() > 0){
                 switch (this.state.footerState) {
                     case RefreshState.Success:
                         break;
@@ -174,18 +169,18 @@ export default class RefreshListView extends Component {
                         break;
                     }
                 }
-            } else {
-                footer = this.renderEmptyView();
-            }
+            // } else {
+            //     footer = this.renderEmptyView();
+            // }
         }
         return footer;
     }
-    
+
     renderEmptyView() {
         if (this.props.renderEmptyView) {
             return this.props.renderEmptyView();
         }
-        
+
         return <EmptyPage style={this.props.emptyStyle} words = {this.props.emptyMsg || '暂无相关数据'}/>;
     }
 }

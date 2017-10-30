@@ -18,7 +18,6 @@ import {
 } from 'react-native';
 import BaseComponent from "../../common/BaseComponent";
 import { WebView } from 'react-native-webview-messaging/WebView';
-import { Actions } from 'react-native-router-flux'
 import NavigationBar from "../../components/basic/NavigationBar";
 import BaseButton from "../../components/basic/BaseButton";
 
@@ -78,7 +77,8 @@ export default class Login extends BaseComponent {
 	}
 
 	_onLoginIn = () =>{
-		Actions.home();
+		// Actions.home();
+		this.router.jumpToPage('home');
 	}
 	_onForgetPwd = ()=>{
 

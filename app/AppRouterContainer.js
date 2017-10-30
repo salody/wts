@@ -10,6 +10,7 @@ import Utils from './utils/Index';
 import HomeScreen from './view/HomeScreen';
 import Typhoon from './view/Typhoon';
 import Login from './view/Login/Login';
+import { VideoList } from './view/Page';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -41,6 +42,7 @@ export default class AppRouterContainer extends Component {
 					<Scene key="login" component={Login} initial hideNavBar={true}/>
 					<Scene key="home" component={HomeScreen} type="reset" hideNavBar={true}/>
 					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
+					<Scene key="videoList" component={VideoList} title="Video"/>
 				</Stack>
 			</Router>
         );
