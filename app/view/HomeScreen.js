@@ -93,7 +93,7 @@ export default class HomeScreen extends BaseComponent {
 			return(
 				<View style={styles.rightContainer} >
 					{this._renderImgBtn('check',require('../images/check.png'))}
-					{this._renderImgBtn('tyhoon',require('../images/tyhoon.png'))}
+					{this._renderImgBtn('typhoon',require('../images/tyhoon.png'))}
 					{this._renderImgBtn('files',require('../images/files.png'))}
 					{this._renderImgBtn('setting',require('../images/set.png'))}
 				</View>
@@ -183,8 +183,8 @@ export default class HomeScreen extends BaseComponent {
 
 			}
 				break;
-			case 'typhone':{
-				this.router.jumpToPage('typhone');
+			case 'typhoon':{
+				this.router.jumpToPage('typhoon');
 			}
 				break;
 			case 'files':{
