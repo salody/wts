@@ -27,11 +27,17 @@ export default class HomeScreen extends BaseComponent {
 			showMore: false,
 			showTypeList:false,
 			shipTypeSource: [{
+				name:'全部',
+				selected:true,
+			},{
 				name:'运沙船',
+				selected:false,
 			},{
 				name:'抛石船',
+				selected:false,
 			},{
 				name:'其它',
+				selected:false,
 			}],
 		}
 	}
@@ -131,12 +137,20 @@ export default class HomeScreen extends BaseComponent {
 	_renderListItem = (item) =>{
 		let data = item.item;
 		return(
-			<TouchableOpacity key={item.id} style={{height:30,justifyContent:'center'}}
+			<TouchableOpacity key={item.id} style={{height:30,justifyContent:'center',flexDirection:'row'}}
 							  onPress = {()=>this._onFlatItemAction(item)}
 			>
-				<Text style={{padding:5,marginLeft:5}}>
-					{data.name}
-				</Text>
+				<View style={{marginLeft:10,justifyContent:'center',width:10}}>
+					<Image
+						source={data.selected? require('../images/point_sel.png'):  require('../images/point_def.png')}
+						style={styles.itemPoint}
+					/>
+				</View>
+				<View style={{flex:1,justifyContent:'center'}}>
+					<Text style={{}}>
+						{data.name}
+					</Text>
+				</View>
 			</TouchableOpacity>
 		)
 	}
@@ -215,9 +229,29 @@ export default class HomeScreen extends BaseComponent {
 	}
 	_onFlatItemAction = (item) =>{
 		let data = item.item;
+		let index = item.index;
 		this.toast(data.name);
+		//默认选中全部，全部包括所有类型，选中除"全部"外的类型时，"全部"为非选中状态
+		let shipSource = this.state.shipTypeSource;
+		if (index>0){
+			shipSource[0].selected = false;
+
+			let oldItem = shipSource[index];
+			oldItem.selected = !data.selected;
+			shipSource[index]=oldItem;
+		}else {
+			shipSource.forEach((item,index)=>{
+				if (index>0){
+					item.selected = false;
+				}else {
+					item.selected = true;
+				}
+			})
+		}
+
 		this.setState({
 			showTypeList:false,
+			shipTypeSource:shipSource,
 		})
 	}
 }
@@ -259,6 +293,10 @@ var styles = StyleSheet.create({
 		left:OtherConfig.marginMid+50+OtherConfig.marginSmall,
 		width:100,
 		backgroundColor:'white'
+	},
+	itemPoint:{
+		height:7,
+		width:7,
 	}
 
 })

@@ -17,7 +17,7 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 import BaseComponent from "../../common/BaseComponent";
-import BaseButton from "../../components/basic/BaseButton";
+import Images from "../../common/resource/Image";
 import StyleVariable from '../../style/StyleVariable'
 
 let testData = [
@@ -110,9 +110,12 @@ class ListItem extends PureComponent {
 
 							<TouchableOpacity onPress={this.props.downLoad} style={[styles.itemDownload]}>
 								<View style={{justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
-									<Image source={require('../../images/download.png')}
-										   style={[{width:20,height:20},styles.itemDowImg]}
-									/>
+									<View style={{justifyContent:'center',alignItems:'center'}}>
+										<Image source={require('../../images/download.png')}
+											   defaultSource = {Images.default_cover.source}
+											   style={[{width:20,height:20},styles.itemDowImg]}
+										/>
+									</View>
 									<View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
 										<Text style={[styles.itemFontStyle]}>
 											下载文档
@@ -178,7 +181,7 @@ var styles = StyleSheet.create({
 	},
 	itemDowImg:{
 		width:15,
-		height:15,
+		height:18,
 	}
 
 
