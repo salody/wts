@@ -172,11 +172,11 @@ export default class HomeScreen extends BaseComponent {
 		// this.toast(btnType);
 		switch (btnType){
 			case 'video':{
-				this.router.jumpToPage('videoList');
+				this.router.jumpToPage('video');
 			}
 				break;
 			case 'list':{
-
+				this.router.jumpToPage('shipList');
 			}
 				break;
 			case 'detail':{

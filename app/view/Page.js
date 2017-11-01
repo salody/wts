@@ -4,4 +4,4 @@
  * 作者：高佳
  */
 
-export {default as VideoList} from './ShipList';
+export {default as ShipList} from './ShipList';
