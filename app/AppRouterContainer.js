@@ -14,7 +14,7 @@ import LearningFiles from './view/LearningFiles/LearningFiles'
 import Message from './view/Message/Message'
 import Video from './view/Video/VideoList'
 import Setting from './view/Setting/Setting'
-import { VideoList } from './view/Page';
+import { ShipList } from './view/Page';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -46,7 +46,7 @@ export default class AppRouterContainer extends Component {
 					<Scene key="login" component={Login}  hideNavBar={true}/>
 					<Scene key="home" component={HomeScreen} type="reset" initial hideNavBar={true}/>
 					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
-					<Scene key="videoList" component={VideoList} title="Video"/>
+					<Scene key="shipList" component={ShipList} title="船列表"/>
 					<Scene key="learningFiles" component={LearningFiles} title="学习文档"/>
 					<Scene key="message" component={Message} title="消息"/>
 					<Scene key="video" component={Video} title="视频"/>
