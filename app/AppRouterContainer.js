@@ -14,6 +14,8 @@ import LearningFiles from './view/LearningFiles/LearningFiles'
 import Message from './view/Message/Message'
 import Video from './view/Video/VideoList'
 import Setting from './view/Setting/Setting'
+import ShipDetail from './view/Video/ShipDetail'
+
 import { VideoList } from './view/Page';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
@@ -44,13 +46,14 @@ export default class AppRouterContainer extends Component {
 			<Router getSceneStyle={getSceneStyle}  backAndroidHandler={this._onExitApp}>
 				<Stack key="root">
 					<Scene key="login" component={Login}  hideNavBar={true}/>
-					<Scene key="home" component={HomeScreen} type="reset" initial hideNavBar={true}/>
+					<Scene key="home" component={HomeScreen} type="reset"  hideNavBar={true}/>
 					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
 					<Scene key="videoList" component={VideoList} title="Video"/>
 					<Scene key="learningFiles" component={LearningFiles} title="学习文档"/>
 					<Scene key="message" component={Message} title="消息"/>
 					<Scene key="video" component={Video} title="视频"/>
 					<Scene key="setting" component={Setting} title="设置" />
+					<Scene key="shipDetail" component={ShipDetail} initial  hideNavBar={true}/>
 				</Stack>
 			</Router>
         );
