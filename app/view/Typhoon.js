@@ -19,11 +19,6 @@ export default class Typhoon extends BaseComponent {
 		super(props);
 	}
 
-	//document.getElementsByClassName("menu_div").setAttribute('style','display:none');
-	injectJavaScripted = () => {
-		this.webView.injectJavaScript(`alert('aaa')`)
-	}
-
 	render() {
 		return (
 			<View style={{flex: 1}}>
@@ -31,15 +26,15 @@ export default class Typhoon extends BaseComponent {
 					ref={(c) => this.webView = c}
 					source={{uri: 'http://www.wztf121.com/wap/release/index.html#route&t='+new Date().getTime()}}
 					style={{flex: 1}}
-					injectedJavaScript={
-						`if(document.readyState == 'complete') {
-							document.getElementsByClassName('tf_menu_div')[0].style.display = 'none';
-							document.getElementsByClassName('close_tp_div')[0].style.display = 'none';
-							document.getElementsByClassName('current_checked_typhoon_div')[0].style.display = 'none';
-							document.getElementsByClassName('menu_div')[0].style.display = 'none';
-							document.getElementById('map').style.height = '600px';
-						}`
-					}
+					// injectedJavaScript={
+					// 	`if(document.readyState == 'complete') {
+					// 		document.getElementsByClassName('tf_menu_div')[0].style.display = 'none';
+					// 		document.getElementsByClassName('close_tp_div')[0].style.display = 'none';
+					// 		document.getElementsByClassName('current_checked_typhoon_div')[0].style.display = 'none';
+					// 		document.getElementsByClassName('menu_div')[0].style.display = 'none';
+					// 		document.getElementById('map').style.height = '600px';
+					// 	}`
+					// }
 					bounces={false}/>
 				<TouchableOpacity
 					style={{position: 'absolute', top: 20, left: 18, zIndex: 1000}}

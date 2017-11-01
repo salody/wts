@@ -4,7 +4,7 @@
  * 作者：高佳
  */
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {
     View,
     Text,
@@ -12,7 +12,9 @@ import {
 	ScrollView,
 	StyleSheet,
 	PixelRatio,
-	TouchableHighlight
+	FlatList,
+	TouchableHighlight,
+	InteractionManager,
 } from 'react-native';
 import BaseComponent from '../common/BaseComponent';
 import StyleVariable from '../style/StyleVariable';
@@ -29,8 +31,16 @@ export default class VideoList extends BaseComponent {
 		super(props);
 		this.state = {
 			showSearchModal: false,
+			videoDataSource: [],
 			searchDataSource: DataSource.VideoSearchDataSource
 		}
+		this.dataSource = [];
+	}
+
+	componentDidMount() {
+		InteractionManager.runAfterInteractions(() => {
+			this.listView && this.listView.startHeaderRefreshing();
+		})
 	}
 
 	render() {
@@ -40,18 +50,16 @@ export default class VideoList extends BaseComponent {
 					<View style={{position:'absolute',top:0,left:0,zIndex:1000}}>
 						<SearchBar dataSource = {this.state.searchDataSource} />
 					</View>
-
 				}
-				<View style={{marginTop: 44}}>
-					{
-						this.renderListView({
-							data: DataSource.VideoDataSource,
-							renderItem: (rowData, row, rowID) => this._renderItem(rowData, row, rowID),
-							onRefresh: () => this._onRequestListWithReload(true),
-							onFooterRefresh: () => this._onRequestListWithReload(false)
-						})
-					}
-				</View>
+				{
+					this.renderListView({
+						style:{flex:1,marginTop: 44},
+						data: this.state.videoDataSource,
+						renderItem: (rowData, row, rowID) => this._renderItem(rowData, row, rowID),
+						onHeaderRefresh: () => this._onRequestListWithReload(true),
+						onFooterRefresh: () => this._onRequestListWithReload(false)
+					})
+				}
 			</View>
 		)
 	}
@@ -64,24 +72,39 @@ export default class VideoList extends BaseComponent {
 			captainName: data.item.captainName,
 			telephone: data.item.phone,
 			address: data.item.address,
+			coverImg: 'http://pic.qiantucdn.com/58pic/25/55/80/58390e0522a14_1024.jpg',
 			onPress: () => {alert(data.item.code)},
-		}
+		};
 		return(
-			<View>
-				<VideoItem {...item}/>
-			</View>
+			<VideoItem {...item}/>
 		)
 	};
 
-	_onRequestListWithReload = () => {
+	_onRequestListWithReload = (isPullDownRefresh) => {
+		if (isPullDownRefresh) {
+			this.state.videoDataSource = [];
+			this.state.pageIndex = 1;
+		} else {
+			this.state.pageIndex++;
+		}
+		this._onFetchData();
+	};
 
+	_onFetchData = () => {
+		setTimeout(() => {
+			this.setState({
+				videoDataSource: DataSource.VideoDataSource
+			});
+			if(this.state.videoDataSource.length <= DataSource.VideoDataSource.count)
+				this.listView && this.listView.endRefreshing(this.RefreshState.Success);
+			else
+				this.listView && this.listView.endRefreshing(this.RefreshState.NoMoreData);
+		}, 1000);
 	}
-
-
 
 }
 
-class SearchBar extends Component {
+class SearchBar extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -197,7 +220,7 @@ class SearchBar extends Component {
 					result.push(
 						<TouchableHighlight key={Util.GUID()}
 											underlayColor={'transparent'}
-											onPress={() => {this._onSelectData(item.id, data.id, dataSource)}}>
+											onPress={() => {this._onSelectData(item.id, data.id, data.title, dataSource)}}>
 							<View>
 								<RowSplitLine/>
 								{
@@ -227,15 +250,13 @@ class SearchBar extends Component {
 	}
 
 	//选择类型
-	_onSelectData(id,itemId, dataSource) {
+	_onSelectData(id,itemId, itemTitle, dataSource) {
 		for(let item of dataSource) {
 			item.show = false;
 			if(item.id === id) {
+				item.title = itemTitle;
 				item.items.map((data) => {
-					data.selected = false;
-					if(data.id === itemId) {
-						data.selected = true;
-					}
+					data.selected = data.id === itemId;
 				})
 			}
 		}

@@ -24,7 +24,7 @@ import UserInfoUtil from './function/UserInfoUtil';
 import Adapter from '../common/function/AdapterUtil';
 import EmptyPage from '../components/basic/EmptyPage';
 import NavigatorBarUtil from './function/NavigatorBarUtil';
-import RefreshListView from '../components/basic/RefreshListView';
+import RefreshListView ,{ RefreshState }from '../components/basic/RefreshListView';
 
 export default class BaseComponent extends Component {
 	constructor (props) {
@@ -34,6 +34,7 @@ export default class BaseComponent extends Component {
 		this.config = Config;
 		this.color = BaseStyle.color;
 		this.images = Images;
+		this.RefreshState = RefreshState;
 		this.isAndroid = Platform.OS === 'android';
 		this.currentUserInfo = global.currentUserInfo;
 		this.windowWidth = Dimensions.get('window').width;
@@ -165,13 +166,13 @@ export default class BaseComponent extends Component {
 
 	//渲染ListView组件
 	renderListView = (param = {}) => {
-		// if (!param.renderItem || !param.onHeaderRefresh || !param.onFooterRefresh) {
-		// 	this.toast('参数有误');
-		// 	return null;
-		// }
-		//dataSource 数据源
+		if (!param.renderItem || !param.onHeaderRefresh || !param.onFooterRefresh) {
+			this.toast('参数有误');
+			return null;
+		}
+		//data 数据源
 		//emptyMsg 数据为空提示
-		//renderRow 渲染行
+		//renderItem 渲染行
 		//renderHeader 渲染头部
 		//renderEmptyView 渲染空页面
 		//renderErrorPage 渲染错误页面

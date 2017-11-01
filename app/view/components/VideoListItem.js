@@ -3,7 +3,7 @@
  * 2017/7/3
  * 作者：年小宁
  */
-import React, {Component, PropTypes} from "react";
+import React, {Component, PropTypes, PureComponent} from "react";
 import {Text, View, StyleSheet, Image, Linking,TouchableHighlight} from "react-native";
 import Images from "../../common/resource/Image";
 import Adapter from "../../common/function/AdapterUtil";
@@ -20,7 +20,7 @@ const defaultProps = {
     SupportNo: 0,
 };
 
-export default class ActivityListItem extends Component {
+export default class ActivityListItem extends PureComponent {
     static propTypes = propTypes;
     static defaultProps = defaultProps;
 
@@ -37,7 +37,7 @@ export default class ActivityListItem extends Component {
                 >
                     <View style={[Adapter.SwitchSize(343, null), styles.itemContent]}>
                         <Image style={[Adapter.SwitchSize(343, 150), styles.imageStyle]}
-                               resizeMode="cover"
+                               resizeMode="stretch"
                                resizeMethod="resize"
                                // defaultSource={{uri: 'default_16_9'}}
                                source={this.props.coverImg ? {uri: this.props.coverImg} : Images.default_cover.source}/>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 		width: '80%'
     },
 	bottomContainer: {
-		height:Adapter.SwitchSize(null, 120).height,
+		height:Adapter.SwitchSize(null, 110).height,
 		padding:10,
 		flexDirection: 'row',
 	},
