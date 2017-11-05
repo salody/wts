@@ -68,7 +68,7 @@ export default class HomeScreen extends BaseComponent {
 					ref={ webview => {
 						this.webview = webview;
 					}}
-					source={{uri: 'http://localhost:8080/'}}
+					source={{uri: 'http://salody.cc:3002/'}}
 					style={{flex: 1}}
 					bounces={false}
 				/>
