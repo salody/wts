@@ -37,14 +37,18 @@ export default class Login extends BaseComponent {
 						placeholder={this.strings.holderAccount}
 						value = {this.state.account}
 						maxLength={20}
-						onChangeText={(account) => this.setState(account)}
+						onChangeText={(account) => this.setState({
+							account
+						})}
 					/>
 					<View style={{backgroundColor:this.color.divider,height:1}}/>
 					<TextInput style={styles.textInput}
 						placeholder={this.strings.holderPwd}
 						value = {this.state.password}
 						maxLength={20}
-						onChangeText={(password) => this.setState(password)}
+						onChangeText={(password) => this.setState({
+							password
+						})}
 					/>
 				</View>
 				<BaseButton
