@@ -44,15 +44,15 @@ export default class AppRouterContainer extends Component {
         return (
 			<Router getSceneStyle={getSceneStyle}  backAndroidHandler={this._onExitApp}>
 				<Stack key="root">
-					<Scene key="login" component={Login}  hideNavBar={true}/>
-					<Scene key="home" component={HomeScreen} type="reset"  hideNavBar={true}/>
+					<Scene key="login" component={Login}  initial hideNavBar={true}/>
+					<Scene key="home" component={HomeScreen}  type="reset"  hideNavBar={true}/>
 					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
 					<Scene key="shipList" component={ShipList} title="船列表"/>
 
 					<Scene key="learningFiles" component={LearningFiles} title="学习文档"/>
 					<Scene key="message" component={Message} title="消息"/>
 					<Scene key="video" component={Video} title="视频"/>
-					<Scene key="videoDetail" component={VideoDetail} initial title="视频详情"/>
+					<Scene key="videoDetail" component={VideoDetail}  title="视频详情"/>
 					<Scene key="videoPlay" component={VideoPlay} hideNavBar />
 					<Scene key="setting" component={Setting} title="设置" />
 				</Stack>
