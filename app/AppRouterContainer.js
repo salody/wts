@@ -14,7 +14,7 @@ import LearningFiles from './view/learningFiles/LearningFiles'
 import Message from './view/message/Message'
 import Video from './view/video/VideoList'
 import Setting from './view/setting/Setting'
-import { ShipList, VideoDetail, VideoPlay } from './view/Page';
+import { ShipList, ShipDetail, VideoDetail, VideoPlay } from './view/Page';
 import ScrollableTabUtil from './common/function/ScrollableTabUtil';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
@@ -46,9 +46,9 @@ export default class AppRouterContainer extends Component {
 				<Stack key="root">
 					<Scene key="login" component={Login}  initial hideNavBar={true}/>
 					<Scene key="home" component={HomeScreen}  type="reset"  hideNavBar={true}/>
-					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
+					<Scene key="typhoon" component={Typhoon} title="台风预警"/>
 					<Scene key="shipList" component={ShipList} title="船列表"/>
-
+					<Scene key="shipDetail" component={ShipDetail} hideNavBar={true}/>
 					<Scene key="learningFiles" component={LearningFiles} title="学习文档"/>
 					<Scene key="message" component={Message} title="消息"/>
 					<Scene key="video" component={Video} title="视频"/>

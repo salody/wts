@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import BaseComponent from "../../common/BaseComponent";
 
-export default class Login extends BaseComponent {
+export default class ShipDetail extends BaseComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -33,7 +33,7 @@ export default class Login extends BaseComponent {
 					source={{uri:'http://pic.qiantucdn.com/58pic/25/55/80/58390e0522a14_1024.jpg'}}
 				>
 					<TouchableOpacity style={{margin:20,justifyContent:'center'}}
-									  onPress = {this.router.pop()}
+									  onPress = {() => this.router.jumpPop()}
 					>
 						<Image
 							style={{height:44,width:34,resizeMode:'center'}}

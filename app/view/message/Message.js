@@ -92,7 +92,7 @@ export default class Message extends BaseComponent {
 	}
 	_onPressItem = (item) =>{
 		let data=item.item;
-		this.toast(data.title);
+		//this.toast(data.title);
 	}
 }
 

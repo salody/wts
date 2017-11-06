@@ -4,7 +4,7 @@
  * 作者：高佳
  */
 
-import React, {PureComponent} from 'react';
+import React, {Component, PureComponent} from 'react';
 import {
     View,
     Text,
@@ -16,14 +16,13 @@ import {
 	TouchableHighlight,
 	InteractionManager,
 } from 'react-native';
-import BaseComponent from '../common/BaseComponent';
-import StyleVariable from '../style/StyleVariable';
-import RowSplitLine from '../components/basic/RowSplitLine';
-import Util from "../utils/basic/Util";
-import Images from '../common/resource/Image';
-import DataSource from '../config/DataConfig';
-import VideoItem from './components/VideoListItem';
-import {NavigationBar }from 'react-native-router-flux'
+import BaseComponent from '../../common/BaseComponent';
+import StyleVariable from '../../style/StyleVariable';
+import RowSplitLine from '../../components/basic/RowSplitLine';
+import Util from "../../utils/basic/Util";
+import Images from '../../common/resource/Image';
+import DataSource from '../../config/DataConfig';
+import VideoItem from './../components/VideoListItem';
 
 let scrollHeight=(5 * 44) + (5 / PixelRatio.get());
 
@@ -74,7 +73,7 @@ export default class VideoList extends BaseComponent {
 			telephone: data.item.phone,
 			address: data.item.address,
 			coverImg: 'http://pic.qiantucdn.com/58pic/25/55/80/58390e0522a14_1024.jpg',
-			onPress: () => {alert(data.item.code)},
+			onPress: () => {this.router.jumpToPage('shipDetail')},
 		};
 		return(
 			<VideoItem {...item}/>
@@ -105,7 +104,7 @@ export default class VideoList extends BaseComponent {
 
 }
 
-class SearchBar extends PureComponent {
+class SearchBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
