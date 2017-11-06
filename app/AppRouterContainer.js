@@ -9,12 +9,13 @@ import {Scene, Router, Actions, ActionConst, Stack} from 'react-native-router-fl
 import Utils from './utils/Index';
 import HomeScreen from './view/HomeScreen';
 import Typhoon from './view/Typhoon';
-import Login from './view/Login/Login';
-import LearningFiles from './view/LearningFiles/LearningFiles'
-import Message from './view/Message/Message'
-import Video from './view/Video/VideoList'
-import Setting from './view/Setting/Setting'
-import { VideoList } from './view/Page';
+import Login from './view/login/Login';
+import LearningFiles from './view/learningFiles/LearningFiles'
+import Message from './view/message/Message'
+import Video from './view/video/VideoList'
+import Setting from './view/setting/Setting'
+import { ShipList, VideoDetail, VideoPlay } from './view/Page';
+import ScrollableTabUtil from './common/function/ScrollableTabUtil';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -43,13 +44,16 @@ export default class AppRouterContainer extends Component {
         return (
 			<Router getSceneStyle={getSceneStyle}  backAndroidHandler={this._onExitApp}>
 				<Stack key="root">
-					<Scene key="login" component={Login}  hideNavBar={true}/>
-					<Scene key="home" component={HomeScreen} type="reset" initial hideNavBar={true}/>
+					<Scene key="login" component={Login}  initial hideNavBar={true}/>
+					<Scene key="home" component={HomeScreen}  type="reset"  hideNavBar={true}/>
 					<Scene key="typhoon" component={Typhoon} title="Typhoon"/>
-					<Scene key="videoList" component={VideoList} title="Video"/>
+					<Scene key="shipList" component={ShipList} title="船列表"/>
+
 					<Scene key="learningFiles" component={LearningFiles} title="学习文档"/>
 					<Scene key="message" component={Message} title="消息"/>
 					<Scene key="video" component={Video} title="视频"/>
+					<Scene key="videoDetail" component={VideoDetail}  title="视频详情"/>
+					<Scene key="videoPlay" component={VideoPlay} hideNavBar />
 					<Scene key="setting" component={Setting} title="设置" />
 				</Stack>
 			</Router>

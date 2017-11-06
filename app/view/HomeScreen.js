@@ -39,7 +39,8 @@ export default class HomeScreen extends BaseComponent {
 				name:'其它',
 				selected:false,
 			}],
-		}
+		};
+		this._onFlatItemAction = this._onFlatItemAction.bind(this);
 	}
 
 	componentDidMount() {
@@ -180,7 +181,7 @@ export default class HomeScreen extends BaseComponent {
 			}
 				break;
 			case 'detail':{
-
+				this.webview.send('showDetails');
 			}
 				break;
 			case 'type':{
@@ -190,7 +191,7 @@ export default class HomeScreen extends BaseComponent {
 			}
 				break;
 			case 'path':{
-
+				this.webview.send('path');
 			}
 				break;
 			case 'check':{
@@ -216,7 +217,7 @@ export default class HomeScreen extends BaseComponent {
 			}
 				break;
 			case 'position':{
-
+				this.webview.send('reset');
 			}
 				break;
 			case 'message':{
@@ -230,7 +231,15 @@ export default class HomeScreen extends BaseComponent {
 	_onFlatItemAction = (item) =>{
 		let data = item.item;
 		let index = item.index;
+		//this.toast(data.name);
+		let selected = !data.selected;
 		this.toast(data.name);
+		if (data.name === '全部') {
+			this.webview.send(data.name);
+		} else {
+			this.webview.send(data.name + selected);
+		}
+
 		//默认选中全部，全部包括所有类型，选中除"全部"外的类型时，"全部"为非选中状态
 		let shipSource = this.state.shipTypeSource;
 		if (index>0){

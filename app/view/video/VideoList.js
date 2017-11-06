@@ -119,7 +119,8 @@ export default class LearningFiles extends BaseComponent {
 	}
 	_onPressItem = (item) =>{
 		let data=item.item;
-		this.toast(data.title);
+		//this.toast(data.title);
+		this.router.jumpToPage('videoDetail')
 	}
 }
 

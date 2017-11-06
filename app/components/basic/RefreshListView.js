@@ -122,7 +122,7 @@ export default class RefreshListView extends Component {
             <FlatList
                 {...this.props}
 				extraData={this.state}
-				keyExtractor = {(item, index) => item.id}
+				keyExtractor = {(item, index) => item+index}
 				onRefresh = {() => this.onHeaderRefresh()}
 				refreshing = {this.state.headerState == RefreshState.Refreshing}
 				ListFooterComponent={() => this.renderFooter()}

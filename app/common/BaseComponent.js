@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import {
 	Dimensions,
 	Platform,
+	PixelRatio,
 } from 'react-native';
 import Utils from '../utils/Index';
 import Styles from '../style/Index';
@@ -24,6 +25,7 @@ import UserInfoUtil from './function/UserInfoUtil';
 import Adapter from '../common/function/AdapterUtil';
 import EmptyPage from '../components/basic/EmptyPage';
 import NavigatorBarUtil from './function/NavigatorBarUtil';
+import ScrollableTabUtil from './function/ScrollableTabUtil';
 import RefreshListView ,{ RefreshState }from '../components/basic/RefreshListView';
 
 export default class BaseComponent extends Component {
@@ -182,5 +184,8 @@ export default class BaseComponent extends Component {
 		return <RefreshListView ref={(component) => this.listView = component} {...param}/>
 	};
 
+	renderScrollableTabView = (children = [], param = {}) => {
+		return ScrollableTabUtil.render(children, param);
+	}
 }
 
