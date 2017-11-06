@@ -232,9 +232,7 @@ export default class HomeScreen extends BaseComponent {
 	_onFlatItemAction = (item) =>{
 		let data = item.item;
 		let index = item.index;
-		//this.toast(data.name);
 		let selected = !data.selected;
-		this.toast(data.name);
 		if (data.name === '全部') {
 			this.webview.send(data.name);
 		} else {

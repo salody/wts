@@ -43,14 +43,21 @@ export default class ShipDetail extends BaseComponent {
 				<View style={styles.detailContainer}>
 					{this._renderHeaderItem('基本信息')}
 					{this._renderRowItem('船   名','TJ_401')}
-					{this._renderRowItem('船长姓名','高佳')}
+					{this._renderRowItem('船长姓名','JACK')}
 					{this._renderRowItem('联系电话','15020002333')}
 					{this._renderRowItem('单    位','天津航道局')}
 					{this._renderHeaderItem('船舶情况')}
 					{this._renderRowItem('吨    位','1000吨')}
-					{this._renderRowItem('空 气 舱','Jack')}
+					{this._renderRowItem('空 气 舱','无')}
 					{this._renderRowItem('层    数','4层')}
-					{this._renderRowItem('容    量','10000L')}
+					{this._renderRowItem('基本尺寸','600 * 800')}
+					{this._renderRowItem('最大吃水','5000')}
+					{this._renderRowItem('最大航速','200')}
+					{this._renderRowItem('油仓数量','100')}
+					{this._renderRowItem('位    置','E132 N255')}
+					{this._renderRowItem('主机功率','100')}
+					{this._renderRowItem('水 密 性','9000')}
+					{this._renderRowItem('层    数','4层')}
 				</View>
 			</ScrollView>
 		)
