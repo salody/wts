@@ -30,7 +30,6 @@ export default class Setting extends BaseComponent {
 			<View style={styles.container}>
 				<StatusBar
 					hidden={false}
-					translucent={true}
 					animated={false}
 				/>
 				<View style={styles.headerContainer} >
@@ -63,7 +62,7 @@ export default class Setting extends BaseComponent {
 						style={[styles.logoutStyle]}
 						textStyle={{color:'white',fontSize:StyleVariable.fontSize.someBig}}
 						text={this.strings.logout}
-						onPress = {()=>this.toast('退出登录')}
+						onPress = {()=>this._onLogout()}
 					/>
 					<View style={{alignItems:'center',marginBottom:20,marginTop:20}}>
 						<Text style={{fontSize:StyleVariable.fontSize.small,color:StyleVariable.color.textTertiary}}>
@@ -73,6 +72,9 @@ export default class Setting extends BaseComponent {
 				</View>
 			</View>
 		)
+	}
+	_onLogout = () =>{
+		this.router.jumpToLogin();
 	}
 }
 

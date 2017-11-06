@@ -40,6 +40,7 @@ export default class HomeScreen extends BaseComponent {
 				selected:false,
 			}],
 		};
+		this.lastIndex = 0; //已选中的船只类型（0对应全部）
 		this._onFlatItemAction = this._onFlatItemAction.bind(this);
 	}
 
@@ -240,6 +241,15 @@ export default class HomeScreen extends BaseComponent {
 			this.webview.send(data.name + selected);
 		}
 
+		//单选逻辑
+		let shipSource = this.state.shipTypeSource;
+		shipSource[this.lastIndex].selected = false;
+		let oldItem = shipSource[index];
+		oldItem.selected = !data.selected;
+		shipSource[index]=oldItem;
+		this.lastIndex = index;
+
+		/* 多选逻辑
 		//默认选中全部，全部包括所有类型，选中除"全部"外的类型时，"全部"为非选中状态
 		let shipSource = this.state.shipTypeSource;
 		if (index>0){
@@ -257,7 +267,7 @@ export default class HomeScreen extends BaseComponent {
 				}
 			})
 		}
-
+		*/
 		this.setState({
 			showTypeList:false,
 			shipTypeSource:shipSource,

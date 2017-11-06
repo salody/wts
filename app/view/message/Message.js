@@ -54,7 +54,6 @@ export default class Message extends BaseComponent {
 			<View style={styles.container}>
 				<StatusBar
 					hidden={false}
-					translucent={true}
 					animated={false}
 				/>
 				<SectionList

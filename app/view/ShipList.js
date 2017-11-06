@@ -23,6 +23,7 @@ import Util from "../utils/basic/Util";
 import Images from '../common/resource/Image';
 import DataSource from '../config/DataConfig';
 import VideoItem from './components/VideoListItem';
+import {NavigationBar }from 'react-native-router-flux'
 
 let scrollHeight=(5 * 44) + (5 / PixelRatio.get());
 

@@ -52,7 +52,6 @@ export default class LearningFiles extends BaseComponent {
 			<View style={{flex:1}}>
 				<StatusBar
 					hidden={false}
-					translucent={true}
 					animated={false}
 				/>
 				<FlatList
