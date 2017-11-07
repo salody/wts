@@ -8,7 +8,7 @@ import {
 import {Scene, Router, Actions, ActionConst, Stack} from 'react-native-router-flux'
 import Utils from './utils/Index';
 import HomeScreen from './view/HomeScreen';
-import Typhoon from './view/Typhoon';
+import Typhoon from './view/typhoon/Typhoon';
 import Login from './view/login/Login';
 import LearningFiles from './view/learningFiles/LearningFiles'
 import Message from './view/message/Message'
