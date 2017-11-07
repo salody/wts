@@ -19,7 +19,23 @@ export default class Typhoon extends BaseComponent {
 		super(props);
 	}
 
-	render(){
+	componentDidMount() {
+		this.webview.messagesChannel.on('text', text => console.log(text));
+	}
 
+
+	render(){
+		return (
+			<View style={{flex: 1}}>
+				<WebView
+					ref={ webview => {
+						this.webview = webview;
+					}}
+					source={{uri: 'http://salody.cc:3003/'}}
+					style={{flex: 1}}
+					bounces={false}
+				/>
+			</View>
+		)
 	}
 }
