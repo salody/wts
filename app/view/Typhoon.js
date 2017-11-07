@@ -36,15 +36,6 @@ export default class Typhoon extends BaseComponent {
 					// 	}`
 					// }
 					bounces={false}/>
-				<TouchableOpacity
-					style={{position: 'absolute', top: 20, left: 18, zIndex: 1000}}
-					onPress={() => this.props.navigation.goBack()}
-					underlayColor='transparent'
-				>
-					<View>
-						<Text>返回</Text>
-					</View>
-				</TouchableOpacity>
 			</View>
 		)
 	}
